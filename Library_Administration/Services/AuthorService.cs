@@ -16,13 +16,13 @@ namespace Library_Administration.Servicios
             return context.Authors;
         }
 
-        public void Save(Authors authors)
+        public void SaveAuthor(Authors authors)
         {
             context.Add(authors);
             context.SaveChanges();
         }
 
-        public void Update(Guid id, Authors authors)
+        public void UpdateAuthor(Guid id, Authors authors)
         {
             var authorsActual = context.Authors.Find(id);
 
@@ -30,11 +30,12 @@ namespace Library_Administration.Servicios
             {
                 authorsActual.AuthorName = authors.AuthorName;
 
+                context.Update(authorsActual);
                 context.SaveChanges();
             }
         }
 
-        public void Delete(Guid id)
+        public void DeleteAuthor(Guid id)
         {
             var authorsActual = context.Authors.Find(id);
 
@@ -48,8 +49,8 @@ namespace Library_Administration.Servicios
     public interface IAuthorService
     {
         IEnumerable<Authors> Get();
-        void Save(Authors authors);
-        void Update(Guid id, Authors authors);
-        void Delete(Guid id);
+        void SaveAuthor(Authors authors);
+        void UpdateAuthor(Guid id, Authors authors);
+        void DeleteAuthor(Guid id);
     }
 }
