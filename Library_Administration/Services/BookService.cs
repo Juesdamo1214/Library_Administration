@@ -16,19 +16,19 @@ namespace Library_Administration.Servicios
             return context.Books;
         }
 
-        public Books GetId(Guid id)
+        public Books GetByIdBook(Guid id)
         {
-            return context.Books.FirstOrDefault(l => l.IdBook == id);
+            return context.Books.FirstOrDefault(item => item.IdBook == id);
         }
 
 
-        public void Save(Books books)
+        public void SaveBook(Books books)
         {
             context.Add(books);
             context.SaveChanges();
         }
 
-        public void Update(Guid id, Books books)
+        public void UpdateBook(Guid id, Books books)
         {
             var bookActual = context.Books.Find(id);
 
@@ -36,12 +36,12 @@ namespace Library_Administration.Servicios
             {
                 bookActual.Title = books.Title;
                 bookActual.YearPublication = books.YearPublication;
-
+                context.Update(bookActual);
                 context.SaveChanges();
             }
         }
 
-        public void Delete(Guid id)
+        public void DeleteBook(Guid id)
         {
             var bookActual = context.Books.Find(id);
 
@@ -55,9 +55,9 @@ namespace Library_Administration.Servicios
     public interface IBooksService
     {
         IEnumerable<Books> Get();
-        Books GetId(Guid id);
-        void Save(Books books);
-        void Update(Guid id, Books books);
-        void Delete(Guid id);
+        Books GetByIdBook(Guid id);
+        void SaveBook(Books books);
+        void UpdateBook(Guid id, Books books);
+        void DeleteBook(Guid id);
     }
 }

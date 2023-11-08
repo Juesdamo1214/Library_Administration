@@ -1,4 +1,6 @@
-﻿namespace Library_Administration.Models
+﻿using System.Text.Json.Serialization;
+
+namespace Library_Administration.Models
 {
     public class Books
     {
@@ -6,6 +8,8 @@
         public Guid IdAuthor { get; set; }
         public string Title { get; set; }
         public int YearPublication { get; set; }
+
+        [JsonIgnore]
         public Authors Author { get; set; }
     }
 }

@@ -23,8 +23,6 @@ namespace Library_Administration
 
                 author.HasKey(Item => Item.IdAuthor);
 
-                author.HasMany(a => a.Books).WithOne(b => b.Author).HasForeignKey(b => b.IdAuthor);
-
                 author.Property(Item => Item.AuthorName).IsRequired().HasMaxLength(150);
 
                 author.HasData(authorsInit);
